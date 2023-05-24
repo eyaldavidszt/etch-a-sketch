@@ -15,9 +15,24 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.container > * {
+    flex: 1;
+}
+
+.container > * > *{
+    flex: 1;
+}
+
+
+
+
+
+
 .input-size {
     width: 150px;
 }
+
 .input-size, button {
     padding: 8px;
     border-radius: 10px;
@@ -26,7 +41,7 @@ body {
 }
 
 button {
-    background-color: #00E0E6;
+    background-color: #83e4e7;
     cursor: pointer;
     transition: .1s ease;
 }
