@@ -1,8 +1,11 @@
+//make 16x16 grid:
 
 
-//on button click:
+
+
+
+//on button click, generate new grid:
 generator = document.querySelector('#gen');
-
 generator.addEventListener('click', generateGrid)
 
 function generateGrid() {
@@ -10,7 +13,7 @@ function generateGrid() {
     myDiv = document.querySelector('.container');
     myDiv.replaceChildren();
 
-    let amount = document.querySelector('.input-size').value;
+    let amount = parseInt(document.querySelector('.input-size').value);
 
     for (let i = 0; i < amount; i++)
     {
@@ -18,35 +21,38 @@ function generateGrid() {
         let col = document.createElement('div');
         for (let j = 0; j < amount; j++)
         {
-            // make cell in column
             let cell = document.createElement('div');
+            // every cell will have a mouseover event listener
+            cell.addEventListener('mouseover', colorDiv);
             col.appendChild(cell);
         }
         container.appendChild(col);
     }
 }
-// for loop X times:
-//   let col = document.createElement('div');
-//   container.appendChild(col);
-//   for loop X times:
-//     let div = document.createElement('div');
-//     div.classList.add('cell');  <-- not sure if necessary
-//     col.appendChild(div);
 
 
-
-
-
-
-
-// on div hover: background color turns random and then if already colored(not transparent), make color darker
-
-//   css:  { background-color: rgba(32, 132, 23); }
-// const myDiv = document.querySelector("div");
-// const compStyles = window.getComputedStyle(myDiv)["background-color"];
-// console.log(compStyles); //returns rgb(32, 132, 23). the opacity is 100 so not specificied
-
-// var rgbColor = 'rgb(46, 123, 14)';
-// rgbArr = rgbColor.substring(4, rgbColor.length-1).replace(/ /g, '').split(',');
-// console.log(rgbArr);
+function colorDiv() {
+    if (this.style.backgroundColor == rgb(255, 255, 255))
+    {
+        this.style.backgroundColor = Math.floor(Math.random() * 255);
+    }
+    else {
+        const rgbColor = window.getComputedStyle(this)["background-color"];
+        rgbArr = rgbColor.substring(4, rgbColor.length-1).replace(/ /g, '').split(',');
+        newArr = [];
+        for (i = 0; i < rgbColor.length; i++)
+        {
+            if (parseInt(rgbArr[i]) - 20 > 0)
+            {
+                newArr.push(parseInt(rgbArr[i]) - 20);
+            }
+            else {
+                //reduce to 0 if result would be lower than 0
+                newArr.push(parseInt(rgbArr[i]) - 20 - (parseInt(rgbArr[i])));
+            }
+        }
+        this.style.backgroundColor = `rgb(${newArr[0]}, ${newArr[1]}, ${rgbArr[2]})`;
+    }
+    return;
+}
 
