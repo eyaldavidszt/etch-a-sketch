@@ -2,7 +2,10 @@
 //make 16x16 grid:
 function makeInit(amount) {
     container = document.querySelector('.container');
-    if (!parseInt(amount)) alert('Not a number!');
+    if (!parseInt(amount)) {
+        alert('Not a number!');
+        return;
+    }
     if (amount > 100)
     {
         alert("Can't generate >100x100 grid");
