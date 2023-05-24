@@ -2,6 +2,15 @@
 //make 16x16 grid:
 function makeInit(amount) {
     container = document.querySelector('.container');
+    if (!parseInt(amount)) alert('Not a number!');
+    if (amount > 100)
+    {
+        alert("Can't generate >100x100 grid");
+        return;
+    }
+    // clear existing grid
+    myDiv = document.querySelector('.container');
+    myDiv.replaceChildren();
     for (let i = 0; i < amount; i++)
     {
         let col = document.createElement('div');
@@ -20,21 +29,12 @@ function makeInit(amount) {
 makeInit(16);
 
 
-
 //on button click, generate new grid:
 generator = document.querySelector('#gen');
 generator.addEventListener('click', generateGrid)
 
 function generateGrid() {
     let amount = parseInt(document.querySelector('.input-size').value);
-    if (amount > 100)
-    {
-        return "Can't generate >100x100 grid";
-    }
-    // clear existing grid
-    myDiv = document.querySelector('.container');
-    myDiv.replaceChildren();
-
     makeInit(amount);
 }
 
@@ -55,13 +55,13 @@ function colorDiv() {
         console.log(rgbArr);
         for (i = 0; i < rgbArr.length; i++)
         {
-            if (parseInt(rgbArr[i]) - 30 > 0)
+            if (parseInt(rgbArr[i]) - 20 > 0)
             {
-                newArr.push(parseInt(rgbArr[i]) - 30);
+                newArr.push(parseInt(rgbArr[i]) - 20);
             }
             else {
                 //reduce to 0 if result would be lower than 0
-                newArr.push(parseInt(rgbArr[i]) - 30 - (parseInt(rgbArr[i]) - 30));
+                newArr.push(parseInt(rgbArr[i]) - 20 - (parseInt(rgbArr[i]) - 20));
             }
         }
         this.style.backgroundColor = `rgb(${newArr[0]}, ${newArr[1]}, ${newArr[2]})`;
