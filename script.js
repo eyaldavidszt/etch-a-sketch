@@ -8,7 +8,12 @@ function makeInit(amount) {
     }
     if (amount > 100)
     {
-        alert("Can't generate >100x100 grid");
+        alert("Can't generate a grid with more than 100 cells!");
+        return;
+    }
+    if (amount < 1)
+    {
+        alert("Can't generate a negative grid!");
         return;
     }
     // clear existing grid
