@@ -1,5 +1,5 @@
 body {
-    height: 100vh;
+    height: 95vh;
     width: 95vw;
     display: flex;
     flex-direction: column;
@@ -64,4 +64,9 @@ button:active {
     display: flex;
     justify-content: center;
     gap: 32px;
+}
+
+a {
+    text-decoration: none;
+
 }
